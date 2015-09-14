@@ -11,6 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150914210748) do
+
+  create_table "reports", force: :cascade do |t|
+    t.string   "summary"
+    t.text     "description"
+    t.string   "report_type"
+    t.string   "reporter_name"
+    t.text     "reporter_contact_info"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
 end
