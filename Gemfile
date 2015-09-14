@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.1.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -45,3 +46,18 @@ group :development do
   gem 'spring'
 end
 
+# Automated testing
+gem 'rspec-rails', group: [:development, :test]
+group :test do
+  gem 'capybara'
+  gem 'launchy'
+  gem 'poltergeist'
+end
+
+group :development, :test do
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
+end
+
+# Twitter Bootstrap, translated to Sass.
+gem 'bootstrap-sass', '~> 3.3'
