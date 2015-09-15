@@ -76,4 +76,22 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[Valley Fire Animals] ",
+      :sender_address => %{"Valley Fire Errors" <mc-valley-fire-animals@oak.homeunix.org>},
+      :exception_recipients => %w{mc-valley-fire-animals@oak.homeunix.org},
+      :smtp_settings => {
+        :address => 'postoffice-oak.homeunix.org',
+        :port => 26,
+        :user_name => nil,
+        :password => nil,
+        :authentication => nil,
+        :enable_starttls_auto => false, # self-signed cert
+        # Generally we're trying to blank out the global ActionMailer
+        # settings, however a nil domain causes an invalid HELO error.
+        #:domain => nil,
+      },
+    }
 end

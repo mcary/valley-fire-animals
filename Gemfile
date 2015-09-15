@@ -72,3 +72,6 @@ end
 #
 gem 'pg', :group => :production
 gem 'sqlite3', :group => [:development, :test]
+
+# Email errors
+gem 'exception_notification'
