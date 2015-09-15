@@ -5,6 +5,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Reported</th>
       <th>Report type</th>
       <th>Summary</th>
       <th>Description</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @reports.each do |report| %>
       <tr>
+        <td><%= report.created_at.strftime("%b %-d %l:%M %P") %></td>
         <td><%= report.report_type %></td>
         <td><%= report.summary %></td>
         <td><%= report.description %></td>
