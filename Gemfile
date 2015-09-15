@@ -75,3 +75,6 @@ gem 'sqlite3', :group => [:development, :test]
 
 # Email errors
 gem 'exception_notification'
+
+# Configure via environment
+gem 'dotenv-rails'
