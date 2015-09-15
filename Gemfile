@@ -78,3 +78,8 @@ gem 'exception_notification'
 
 # Configure via environment
 gem 'dotenv-rails'
+
+# File uploads
+gem "paperclip", "~> 4.3"
+gem "fog"
+gem "unf"

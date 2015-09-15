@@ -63,6 +63,19 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :photo, class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.file_field :photo %>
+      <p class="help-block">
+        Please avoid unpleasant or haunting photos of injured animals.
+        If you get an error after uploading for 15-30 sec, try
+        resizing your photo to ~800x800 pixels first.
+      </p>
+    </div>
+  </div>
+
+
+  <div class="form-group">
     <div class="col-sm-offset-2 col-sm-8">
       <%= f.submit class: "btn btn-primary" %>
       <%= link_to 'View all reports', reports_path, class: "btn btn-link" %>

@@ -8,6 +8,7 @@
       <th>Reported</th>
       <th>Report type</th>
       <th>Summary</th>
+      <th>Photo</th>
       <th>Description</th>
       <th>Reporter name</th>
       <th>Reporter contact info</th>
@@ -21,6 +22,11 @@
         <td><%= report.created_at.strftime("%b %-d %l:%M %P") %></td>
         <td><%= report.report_type %></td>
         <td><%= report.summary %></td>
+        <td>
+          <% if report.photo.present? %>
+            <%= image_tag(report.photo.url(:thumb)) %>
+          <% end %>
+        </td>
         <td><%= report.description %></td>
         <td><%= report.reporter_name %></td>
         <td><%= report.reporter_contact_info %></td>

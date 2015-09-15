@@ -50,5 +50,16 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-sm-2 field-label">
+    Photo
+  </div>
+  <div class="col-sm-8">
+    <% if @report.photo.present? %>
+      <%= image_tag(@report.photo.url(:medium)) %>
+    <% end %>
+  </div>
+</div>
+
 <br>
 <%= link_to 'View all reports', reports_path %>
