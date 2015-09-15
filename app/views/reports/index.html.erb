@@ -2,12 +2,12 @@
 
 <h1>Listing Reports</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
+      <th>Report type</th>
       <th>Summary</th>
       <th>Description</th>
-      <th>Report type</th>
       <th>Reporter name</th>
       <th>Reporter contact info</th>
       <th></th>
@@ -17,9 +17,9 @@
   <tbody>
     <% @reports.each do |report| %>
       <tr>
+        <td><%= report.report_type %></td>
         <td><%= report.summary %></td>
         <td><%= report.description %></td>
-        <td><%= report.report_type %></td>
         <td><%= report.reporter_name %></td>
         <td><%= report.reporter_contact_info %></td>
         <td><%= link_to 'Show', report %></td>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Report', new_report_path %>
+<%= link_to 'New Report', new_report_path, class: "btn btn-primary" %>
