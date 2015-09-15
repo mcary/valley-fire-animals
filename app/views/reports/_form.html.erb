@@ -20,8 +20,16 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :report_type %><br>
-    <%= f.text_field :report_type %>
+    <%= f.label :report_type_found do %>
+      <%= f.radio_button :report_type, "found" %>
+      I <strong>found</strong> an animal (that does not belong to me)
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :report_type_lost do %>
+      <%= f.radio_button :report_type, "lost" %>
+      I <strong>lost</strong> due to the fire
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :reporter_name %><br>
