@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :animals
+  resources :foster_homes
   resources :reports
   root to: "pages#index"
   get "/about", to: "pages#about"
