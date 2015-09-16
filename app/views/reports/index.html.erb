@@ -2,6 +2,18 @@
 
 <h1>Listing Reports</h1>
 
+<p>
+  Please
+  <%= mail_to "mc-valley-fire-animals@oak.homeunix.org",
+         "email me",
+         subject: "Valley Fire Animals: " %>
+  to update or remove a report.
+</p>
+
+<p>
+  <%= link_to 'New Report', new_report_path, class: "btn btn-primary" %>
+</p>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -39,7 +51,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Report', new_report_path, class: "btn btn-primary" %>
