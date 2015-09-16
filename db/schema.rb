@@ -19,6 +19,26 @@ ActiveRecord::Schema.define(version: 20150917170202) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "animal_foster_homes", force: :cascade do |t|
+    t.integer  "foster_home_id"
+    t.integer  "animal_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "animals", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "foster_homes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reports", force: :cascade do |t|
     t.string   "summary"
     t.text     "description"

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'actions/reunite'
 
+  resources :animals
+  resources :foster_homes
   resources :reports
   root to: "pages#index"
   get "/about", to: "pages#about"
