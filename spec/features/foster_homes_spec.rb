@@ -13,25 +13,22 @@ describe "Foster Homes" do
   end
   
   it "new" do
-    visit "/foster_homes/new"
-    name = "Foo House"
-    address = "123 Bar St. Sebastopol, Ca. 9547"
-    fill_in "foster_home_name", with: name
-    fill_in "foster_home_address", with: address
-    check "foster_home_animal_cat"
-    click_on "Create Foster home"
+    create_foster_home_with_dog
     expect(page).to have_content "Foster home was successfully created"
-    expect(page).to have_content "cat"
-    expect(page).not_to have_content "dog"
+    expect(page).to have_content "dog"
+    expect(page).not_to have_content "cat"
+    expect_page_to_not_have_disabled_features
   end
   
   it "index" do
-    visit "foster_homes"
-    save_and_open_page
-    expect(page).to have_content "Cat, Cinimon Tortoise Shell"
+    create_foster_home_with_dog
+    visit "/foster_homes"
+    expect_page_to_not_have_disabled_features
   end
   
   it "show" do
+    create_foster_home_with_dog
+    expect_page_to_not_have_disabled_features
   end
   
   it "has a CTA on the home page" do
@@ -41,6 +38,21 @@ describe "Foster Homes" do
   # end
 
   private
+
+  def expect_page_to_not_have_disabled_features
+    expect(page).not_to have_content "Edit"
+    expect(page).not_to have_content "Destroy"
+  end
+
+  def create_foster_home_with_dog
+    visit "/foster_homes/new"
+    name = "Foo House"
+    address = "123 Bar St. Sebastopol, Ca. 9547"
+    fill_in "foster_home_name", with: name
+    fill_in "foster_home_address", with: address
+    check "foster_home_animal_dog"
+    click_on "Create Foster home"
+  end
 
   def create_animal(name="Dog")
     visit "/animals/new"
