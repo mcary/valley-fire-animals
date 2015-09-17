@@ -31,10 +31,8 @@ class FosterHomesController < ApplicationController
       render 'new'
       return
     end
-    animals = Animal.find params[:foster_home][:animals]
-    animals.each do |animal|
-      @foster_home.animal_foster_homes << AnimalFosterHome.new(animal:animal, foster_home:@foster_home)
-    end
+    
+    update_foster_home_animals
 
     respond_to do |format|
       if @foster_home.save
@@ -50,7 +48,7 @@ class FosterHomesController < ApplicationController
   # PATCH/PUT /foster_homes/1
   # PATCH/PUT /foster_homes/1.json
   def update
-    # adfsadfs
+    update_foster_home_animals
     respond_to do |format|
       if @foster_home.update(foster_home_params)
         format.html { redirect_to @foster_home, notice: 'Foster home was successfully updated.' }
@@ -73,6 +71,14 @@ class FosterHomesController < ApplicationController
   end
 
   private
+    def update_foster_home_animals
+      @foster_home.animal_foster_homes = []
+      animals = Animal.find params[:foster_home][:animals]
+      animals.each do |animal|
+        @foster_home.animal_foster_homes << AnimalFosterHome.new(animal:animal, foster_home:@foster_home)
+      end
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_foster_home
       @foster_home = FosterHome.find(params[:id])

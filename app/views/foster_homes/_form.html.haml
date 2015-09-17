@@ -12,11 +12,9 @@
   .form-group
     = f.label "Animals you can board", class: 'control-label col-lg-2'
     .col-lg-10
-      %fieldset#dayArray
-        .btn-group{"data-toggle" => "buttons"}
-          - for animal in Animal.all do
-            %input{name: "[foster_home]animals[]", type: "checkbox", value:animal.id}
-            =animal.name
+      - for animal in Animal.all do
+        %input{name: "[foster_home]animals[]", type: "checkbox", value:animal.id, checked:@foster_home.animals.include?(animal)}
+        =animal.name
   .form-group
     .col-lg-offset-2.col-lg-10
       = f.submit nil,class: 'btn btn-primary'
