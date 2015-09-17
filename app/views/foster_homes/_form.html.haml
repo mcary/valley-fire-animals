@@ -13,7 +13,7 @@
     = f.label "Animals you can board", class: 'control-label col-lg-2'
     .col-lg-10
       - for animal in Animal.all do
-        %input{name: "[foster_home]animals[]", type: "checkbox", value:animal.id, checked:@foster_home.animals.include?(animal)}
+        %input{name: "[foster_home]animals[]", type: "checkbox", id:"foster_home_animal_#{animal.name}", value:animal.id, checked:@foster_home.animals.include?(animal)}
         =animal.name
   .form-group
     .col-lg-offset-2.col-lg-10
