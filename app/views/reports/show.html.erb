@@ -9,7 +9,9 @@
     Summary
   </div>
   <div class="col-sm-8">
-    <strong><%= @report.report_type.titleize %>:</strong>
+    <strong>
+      <%= @report.report_type.titleize %> <%= @report.animal_type_name %>:
+    </strong>
     <%= @report.summary %>
   </div>
 </div>

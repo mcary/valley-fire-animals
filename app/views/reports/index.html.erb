@@ -20,6 +20,7 @@
       <th>Reported</th>
       <th>Report type</th>
       <th>Summary</th>
+      <th>Animal Type</th>
       <th>Photo</th>
       <th>Description</th>
       <th>Reporter name</th>
@@ -32,6 +33,7 @@
       <tr>
         <td><%= report.created_at.strftime("%b %-d %l:%M %P") %></td>
         <td><%= report.report_type %></td>
+        <td><%= report.animal_type_name %></td>
         <td><%= report.summary %></td>
         <td>
           <% if report.photo.present? %>
