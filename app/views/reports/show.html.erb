@@ -1,5 +1,8 @@
 <div class="page-header">
   <h1>Report <%= @report.id %></h1>
+  <% if @report.reunited %>
+    <h2>This animal has been returned home :)</h2>
+  <% end %>
 </div>
 
 <p id="notice"><%= notice %></p>
@@ -63,3 +66,4 @@
 
 <br>
 <%= link_to 'View all reports', reports_path %>
+<%= link_to 'Reunited', reunite_path, class:'btn btn-success', role: "button" unless @report.reunited %>

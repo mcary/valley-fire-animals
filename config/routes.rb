@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  get 'actions/reunite'
+
   resources :reports
   root to: "pages#index"
   get "/about", to: "pages#about"
   get "/flyer", to: "pages#flyer"
   get "/terms", to: "pages#terms"
+  get "/reunite/:id", to: "actions#reunite", as: 'reunite'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915213102) do
+ActiveRecord::Schema.define(version: 20150917170202) do
 
   create_table "reports", force: :cascade do |t|
     t.string   "summary"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150915213102) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.boolean  "reunited"
   end
 
 end
