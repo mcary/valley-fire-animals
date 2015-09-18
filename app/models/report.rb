@@ -9,7 +9,7 @@ class Report < ActiveRecord::Base
     }
 
   belongs_to :animal_type
-  delegate :name, to: :animal_type, prefix: true
+  delegate :name, to: :animal_type, prefix: true, allow_nil: true
 
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates_with AttachmentSizeValidator,

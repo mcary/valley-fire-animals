@@ -36,7 +36,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :summary, class: "col-sm-2 control-label" %>
+    <%= f.label :animal_type, class: "col-sm-2 control-label" %>
     <div class="col-sm-8">
       <%= f.collection_radio_buttons(:animal_type_id, AnimalType.all, :id, :name) do |button| %>
         <div class="radio">
