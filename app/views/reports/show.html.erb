@@ -66,6 +66,15 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-sm-2 field-label">
+    Reunited
+  </div>
+  <div class="col-sm-8">
+    <%= @report.reunited ? "Yes" : "No" %>
+  </div>
+</div>
+
 <br>
 <%= link_to 'View all reports', reports_path %>
 &nbsp;
