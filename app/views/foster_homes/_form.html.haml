@@ -12,9 +12,12 @@
   .form-group
     = f.label "Animals you can board", class: 'control-label col-lg-2'
     .col-lg-10
-      - for animal in Animal.all do
-        %input{name: "[foster_home]animals[]", type: "checkbox", id:"foster_home_animal_#{animal.name}", value:animal.id, checked:@foster_home.animals.include?(animal)}
-        =animal.name
+      %fieldset#dayArray
+        .btn-group{"data-toggle" => "buttons"}
+          - for animal in Animal.all do
+            %label.btn.btn-default{:class=>@foster_home.animals.include?(animal) ? "active" : "", style:' -webkit-border-radius: 0 !important;-moz-border-radius: 0 !important;border-radius: 0 !important; margin:5px;'}
+              %input{name: "[foster_home]animals[]", type: "checkbox", id:"foster_home_animal_#{animal.name}", value:animal.id, checked:@foster_home.animals.include?(animal)}
+              =animal.name
   .form-group
     .col-lg-offset-2.col-lg-10
       = f.submit nil,class: 'btn btn-primary'
