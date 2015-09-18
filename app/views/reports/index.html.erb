@@ -65,7 +65,10 @@
     <% @reports.each do |report| %>
       <tr>
         <td><%= report.created_at.strftime("%b %-d %l:%M %P") %></td>
-        <td><%= report.report_type %></td>
+        <td>
+          <%= report.report_type %>
+          <%= "REUNITED" if report.reunited %>
+        </td>
         <td><%= report.animal_type_name %></td>
         <td><%= report.summary %></td>
         <td>
