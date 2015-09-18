@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.reorder("created_at desc")
+    @reports = apply_filters Report.reorder("created_at desc")
   end
 
   # GET /reports/1
@@ -70,5 +70,30 @@ class ReportsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
       params.require(:report).permit(:summary, :description, :report_type, :reporter_name, :reporter_contact_info, :photo, :animal_type_id)
+    end
+
+    def apply_filters(query)
+      reports = Report.arel_table
+      # Warning: O(n*m) conditions: n=words, m=fields
+      if params[:words].present?
+        words = params[:words].split(/\W/) # A word is alphanum or "_"
+        query = words.inject(query) do |ch, word|
+          fields = [:summary, :description, :reporter_name]
+          conds = fields.map {|f| reports[f].matches("%#{word}%") }
+          disjunction = conds.inject(conds.pop) do |disj, cond|
+            disj.or(cond)
+          end
+          ch.where(disjunction)
+        end
+      end
+      if params[:report_type].present?
+        query = query.where(report_type: params[:report_type].to_s)
+      end
+      if params[:animal_type_id].present?
+        animal_type_id = params[:animal_type_id].to_s
+        animal_type_id = nil if animal_type_id == "none"
+        query = query.where(animal_type_id: animal_type_id)
+      end
+      query
     end
 end
