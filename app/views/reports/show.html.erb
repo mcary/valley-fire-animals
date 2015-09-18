@@ -72,11 +72,16 @@
   </div>
   <div class="col-sm-8">
     <%= @report.reunited ? "Yes" : "No" %>
+    <% unless @report.reunited %>
+      <p>
+        Have you reunited this animal with its owner?  Let us know!
+        <br>
+        <%= link_to 'Reunited', reunite_path,
+          class: 'btn btn-success', role: "button" %>
+      </p>
+    <% end %>
   </div>
 </div>
 
 <br>
 <%= link_to 'View all reports', reports_path %>
-&nbsp;
-&nbsp;
-<%= link_to 'Reunited', reunite_path, class:'btn btn-success', role: "button" unless @report.reunited %>
