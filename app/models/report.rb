@@ -8,12 +8,15 @@ class Report < ActiveRecord::Base
       :medium => "-strip -quality 90 -interlace Plane",
     }
 
+  belongs_to :animal_type
+  delegate :name, to: :animal_type, prefix: true, allow_nil: true
+
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
   validates_with AttachmentSizeValidator,
     attributes: :photo,
     less_than: 10.megabytes
 
-  validates :report_type, :summary, :reporter_name, :reporter_contact_info,
+  validates :report_type, :summary, :reporter_name, :reporter_contact_info, :animal_type,
     presence: true
 
   validates :summary, length: { maximum: 40 }

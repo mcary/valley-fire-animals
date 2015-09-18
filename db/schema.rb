@@ -13,6 +13,12 @@
 
 ActiveRecord::Schema.define(version: 20150917170202) do
 
+  create_table "animal_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reports", force: :cascade do |t|
     t.string   "summary"
     t.text     "description"
@@ -26,6 +32,9 @@ ActiveRecord::Schema.define(version: 20150917170202) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.boolean  "reunited"
+    t.integer  "animal_type_id"
   end
+
+  add_index "reports", ["animal_type_id"], name: "index_reports_on_animal_type_id"
 
 end
