@@ -89,6 +89,10 @@ class ReportsController < ApplicationController
       if params[:report_type].present?
         query = query.where(report_type: params[:report_type].to_s)
       end
+      if params[:reunited].present?
+        matching_values = params[:reunited] == "true" ? true : [false, nil]
+        query = query.where(reunited: matching_values)
+      end
       if params[:animal_type_id].present?
         animal_type_id = params[:animal_type_id].to_s
         animal_type_id = nil if animal_type_id == "none"

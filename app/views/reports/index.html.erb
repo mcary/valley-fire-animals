@@ -15,35 +15,52 @@
     class: "btn btn-primary", style: "margin-top: 0.5em" %>
 
   <%= form_tag({}, method: :get,
-               class: "form-inline pull-right",
-               style: "margin-top: 0.5em") do %>
-    <div class="form-group">
-      <%= label_tag :report_type %>
-      <%
-        choices = %w{lost found}.map {|t| [t.titleize, t] }
-      %>
-      <%= select_tag :report_type,
-            options_for_select(choices, params[:report_type]),
-            include_blank: "either",
-            class: "form-control" %>
+               class: "form-inline pull-right"
+               ) do %>
+    <div style="margin-top: 0.5em">
+      <div class="form-group">
+        <%= label_tag :report_type %>
+        <%
+          choices = %w{lost found}.map {|t| [t.titleize, t] }
+        %>
+        <%= select_tag :report_type,
+              options_for_select(choices, params[:report_type]),
+              include_blank: "either",
+              class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :animal_type_id %>
+        <%
+          choices = AnimalType.all.map {|a| [a.name, a.id] }
+          choices.unshift ["none", "none"]
+        %>
+        <%= select_tag :animal_type_id,
+              options_for_select(choices, params[:animal_type_id]),
+              include_blank: "any",
+              class: "form-control" %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= label_tag :animal_type_id %>
-      <%
-        choices = AnimalType.all.map {|a| [a.name, a.id] }
-        choices.unshift ["none", "none"]
-      %>
-      <%= select_tag :animal_type_id,
-            options_for_select(choices, params[:animal_type_id]),
-            include_blank: "any",
-            class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= label_tag :words %>
-      <%= text_field_tag :words, params[:words], class: "form-control" %>
-    </div>
-    <%= submit_tag "Search", class: "btn btn-default" %>
-  <% end %>
+    <div style="margin-top: 0.5em">
+      <div class="form-group">
+        <%= label_tag :reunited %>
+        <%
+          choices = [
+            ["Yes", true],
+            ["No", false],
+          ]
+        %>
+        <%= select_tag :reunited,
+              options_for_select(choices, params[:reunited]),
+              include_blank: "either",
+              class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :words %>
+        <%= text_field_tag :words, params[:words], class: "form-control" %>
+      </div>
+      <%= submit_tag "Search", class: "btn btn-default" %>
+    <% end %>
+  </div>
   <div class="clearfix"></div>
 </div>
 
