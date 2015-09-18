@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/about", to: "pages#about"
   get "/flyer", to: "pages#flyer"
   get "/terms", to: "pages#terms"
+  get "/resources", to: "pages#resources"
   get "/reunite/:id", to: "actions#reunite", as: 'reunite'
 
   # The priority is based upon order of creation: first created -> highest priority.
