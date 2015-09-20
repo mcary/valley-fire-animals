@@ -41,11 +41,12 @@ describe "Reports" do
     it 'can be marked reunited' do
       create_report
       visit "/reports/1"
-      expect(page).to have_link "Reunited"
-      click_link("Reunited")
+      click_button("Yes, this animal and its owner are reunited")
       expect(page).to have_content "Congratulations"
       visit "/reports/1"
       expect(page).to have_content "This animal has been returned home :)"
+      expect(page).to \
+        have_content "We've been told this animal is reunited with its owner."
     end
   end
   
