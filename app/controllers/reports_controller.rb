@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = apply_filters Report.reorder("created_at desc")
+    @reports = apply_pagination apply_filters Report.reorder("created_at desc")
   end
 
   # GET /reports/1
@@ -99,5 +99,9 @@ class ReportsController < ApplicationController
         query = query.where(animal_type_id: animal_type_id)
       end
       query
+    end
+
+    def apply_pagination(query)
+      query.page(params[:page]).per(30)
     end
 end

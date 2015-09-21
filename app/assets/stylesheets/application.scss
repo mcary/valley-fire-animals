@@ -20,3 +20,11 @@
   font-weight: 600;
   margin-bottom: 1em;
 }
+
+.pagination-wrapper {
+  // Pagination itself is inline-block, so center w/ text-align
+  text-align: center;
+  .pagination {
+    margin-top: 0px;
+  }
+}

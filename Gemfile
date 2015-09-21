@@ -83,3 +83,7 @@ gem 'dotenv-rails'
 gem "paperclip", "~> 4.3"
 gem "fog"
 gem "unf"
+
+# Pagination
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'

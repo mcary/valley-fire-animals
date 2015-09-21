@@ -64,6 +64,10 @@
   <div class="clearfix"></div>
 </div>
 
+<p class="pull-right" style="clear: right; margin-top: 1em">
+  <%= page_entries_info @reports %>
+</p>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -106,3 +110,7 @@
     <% end %>
   </tbody>
 </table>
+
+<nav class="pagination-wrapper">
+  <%= paginate @reports, theme: 'twitter-bootstrap-3' %>
+</nav>
