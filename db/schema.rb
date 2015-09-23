@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917170202) do
+ActiveRecord::Schema.define(version: 20150923164148) do
 
   create_table "animal_types", force: :cascade do |t|
     t.string   "name"
@@ -31,8 +31,13 @@ ActiveRecord::Schema.define(version: 20150917170202) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.boolean  "reunited"
     t.integer  "animal_type_id"
+    t.boolean  "reunited"
+    t.boolean  "reuniter_is_reporter"
+    t.string   "reuniter_name"
+    t.string   "reuniter_email"
+    t.datetime "reunited_at"
+    t.text     "reuniter_comment"
   end
 
   add_index "reports", ["animal_type_id"], name: "index_reports_on_animal_type_id"

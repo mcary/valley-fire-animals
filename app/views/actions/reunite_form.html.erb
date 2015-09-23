@@ -1,0 +1,93 @@
+<div class="page-header">
+  <h1>Report #<%= @report.id %>: Reunite</h1>
+</div>
+
+<%= form_for(@report,
+             url: { action: :reunite },
+             html: { class: "form-horizontal"}) do |f| %>
+  <% if @report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% @report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <p class="lead">
+        I have reunited this animal with its owner...
+      </p>
+      <p>
+        Please fill in your information below to confirm that this
+        animal has been reunited with its owner.  Only do this if:
+        
+        <ul>
+          <li>you have found the animal listed in a "lost" report and
+            returned it to the owner, OR
+          <li>you are the owner and you have received an animal
+            listed in a "found" report
+        </ul>
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :reuniter_name, "Your name",
+          class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :reuniter_name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <div class="checkbox">
+        <%= f.label :reuniter_is_reporter do %>
+          <%= f.check_box :reuniter_is_reporter %>
+          I am the person who originally posted this report on
+          ValleyFireAnimals.com.  (Leave unchecked if you are not.)
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :reuniter_email, "Your email",
+          class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :reuniter_email, class: "form-control" %>
+      <p class="help-block">
+        This email address will <strong>not be posted publicly</strong>.
+        We may use it to confirm the reunited status of the animal.
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :reuniter_comment, "Comment", class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :reuniter_comment, class: "form-control" %>
+      <p class="help-block">
+        If you are comfortable with sharing, we would love to hear the
+        story of how the owner was reunited with their pet.  It may
+        bring hope to other owners.  (Or, if your reunion is not happy,
+        as with a deceased animal, to share your sorrow.)  Optional.
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to 'View all reports', reports_path, class: "btn btn-link" %>
+      <% if @report.persisted? %>
+        <%= link_to 'View this Report', @report, class: "btn btn-link" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
