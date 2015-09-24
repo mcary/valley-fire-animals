@@ -36,22 +36,25 @@ describe "Reports" do
     click_button "Create Report"
     expect(page).to have_content "Summary is too long"
   end
-  
+
   describe "show" do
     it 'can be marked reunited' do
       create_report
       visit "/reports/1"
       click_button("Yes, this animal and its owner are reunited")
-      expect(page).to have_content "Congratulations"
+      fill_in "Your name", with: "Jane Doe"
+      fill_in "Your email", with: "jane@doe.com"
+      click_button("Update Report")
+      expect(page).to have_content "Report was successfully updated."
       visit "/reports/1"
-      expect(page).to have_content "This animal has been returned home :)"
+      expect(page).to have_content "This animal has been returned home"
       expect(page).to \
         have_content "We've been told this animal is reunited with its owner."
     end
   end
-  
+
   private
-  
+
   def create_report
     visit "reports/new"
     fill_in "Summary", with: "Cat, Cinimon Tortoise Shell"
