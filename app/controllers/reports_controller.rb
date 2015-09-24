@@ -1,6 +1,12 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
+  http_basic_authenticate_with(
+    name: "admin",
+    password: ENV.fetch("ADMIN_PASSWORD"),
+    except: [:index, :show, :new, :create]
+  )
+
   # GET /reports
   # GET /reports.json
   def index
