@@ -20,4 +20,8 @@ class Report < ActiveRecord::Base
     presence: true
 
   validates :summary, length: { maximum: 40 }
+
+  validates :reuniter_name, :reuniter_email,
+    presence: true, if: proc {|r| r.reunited? }
+
 end

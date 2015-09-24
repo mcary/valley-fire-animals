@@ -83,13 +83,41 @@
       <p>
         Have you reunited this animal with its owner?  Let us know!
         <br>
-        <%= button_to 'Yes, this animal and its owner are reunited', reunite_path,
-          class: 'btn btn-success', role: "button",
-          data: { confirm: "Please confirm this this animal has been reunited." } %>
+        <%= button_to 'Yes, this animal and its owner are reunited', reunite_form_path,
+          class: 'btn btn-success', role: "button" %>
       </p>
     <% end %>
   </div>
 </div>
+
+<% if @report.reunited? %>
+  <div class="row">
+    <div class="col-sm-2 field-label">
+      Reunited at
+    </div>
+    <div class="col-sm-8">
+      <%= @report.reunited_at.strftime("%A, %B %-d, %Y at %l:%M %P") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 field-label">
+      Reuniter name
+    </div>
+    <div class="col-sm-8">
+      <%= @report.reuniter_name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 field-label">
+      Reuniter comment
+    </div>
+    <div class="col-sm-8">
+      <%= @report.reuniter_comment %>
+    </div>
+  </div>
+<% end %>
 
 <br>
 <%= link_to 'View all reports', reports_path %>

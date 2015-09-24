@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get "/flyer", to: "pages#flyer"
   get "/terms", to: "pages#terms"
   get "/resources", to: "pages#resources"
-  post "/reunite/:id", to: "actions#reunite", as: 'reunite'
+  patch "/reunite/:id", to: "actions#reunite", as: 'reunite'
+  post "/reunite_form/:id", to: "actions#reunite_form", as: 'reunite_form'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
