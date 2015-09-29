@@ -10,7 +10,8 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = apply_pagination apply_filters Report.reorder("created_at desc")
+    @reports = Report.reorder("created_at desc").includes(:animal_type)
+    @reports = apply_pagination apply_filters @reports
   end
 
   # GET /reports/1
