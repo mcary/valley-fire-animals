@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require "shellwords"
+require "uri"
+
+def main
+  raise "Database already has tables!" if has_tables?
+  dump_parent
+  restore
+end
+
+def has_tables?
+  output = run_sql("\\d")
+  !output.match(/No relations found\./)
+end
+
+def dump_parent
+  uri = URI.parse ENV.fetch("PARENT_DATABASE_URL")
+  puts "Running pg_dump..."
+  system "#{pg_cmd("pg_dump --format=c --schema=public", uri)} > tmp.dump"
+end
+
+def restore
+  uri = URI.parse ENV.fetch("DATABASE_URL")
+  puts "Running pg_restore..."
+  system "#{pg_cmd("pg_restore --verbose --clean --no-acl --no-owner", uri)} < tmp.dump"
+end
+
+def pg_cmd(name, uri)
+  "PGPASSWORD=#{uri.password} #{name} --dbname=#{uri.path[1..-1]} " +
+    "--host=#{uri.host} --username=#{uri.user}"
+end
+
+def run_sql(sql)
+  uri = URI.parse ENV.fetch("DATABASE_URL")
+  puts "Running sql..."
+  `#{pg_cmd("psql", uri)} -c #{sql.shellescape}`
+end
+
+main

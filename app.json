@@ -1,15 +1,25 @@
 {
+  "scripts": {
+    "postdeploy": "bundle exec bin/import_database"
+  },
   "env": {
     "ADMIN_PASSWORD": {
       "required": true
     },
-    "ADMIN_PASSWORD": {
+    "PARENT_DATABASE_URL": {
       "required": true
     },
     "AWS_ACCESS_KEY_ID": {
       "required": true
     },
     "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "PAPERCLIP_FOG_DIRECTORY": {
+      "value": "valley-fire-animals-dev",
+      "required": true
+    },
+    "PAPERCLIP_FOG_PROVIDER": {
       "required": true
     },
     "SECRET_KEY_BASE": {
