@@ -1,0 +1,99 @@
+  <% if @report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% @report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <div class="radio">
+        <%= f.label :report_type_found do %>
+          <%= f.radio_button :report_type, "found" %>
+          I <strong>found</strong> an animal (that does not belong to me)
+        <% end %>
+      </div>
+      <div class="radio">
+        <%= f.label :report_type_lost do %>
+          <%= f.radio_button :report_type, "lost" %>
+          I <strong>lost</strong> an animal due to the fire
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :summary, class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :summary, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :animal_type, class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.collection_radio_buttons(:animal_type_id, AnimalType.all, :id, :name) do |button| %>
+        <div class="radio">
+          <%= button.label do %>
+            <%= button.radio_button %>
+            <%= button.text %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :description, class: "form-control" %>
+      <p class="help-block">
+        It's helpful to include details like the town the animal was
+        lost or found in, the animal's breed, color, distinctive
+        markings, gender, and name, as well as collar color and type.
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :reporter_name, class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :reporter_name, class: "form-control" %>
+      <p class="help-block">
+        Please enter your name.  If you are reposting from another source,
+        please indicate both your name and the original reporter's name if
+        available.  For example: "Jane Doe via Joe Schmoe" if Jane was the
+        original reporter and Joe is reposting it here.
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :reporter_contact_info, class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_area :reporter_contact_info, class: "form-control" %>
+      <p class="help-block">
+        This will be displayed <strong>publicly</strong> so
+        that others may respond to your report.  Suggested forms of
+        contact: email, twitter, or phone.  Your residential address
+        is not recommended.
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :photo, class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.file_field :photo %>
+      <p class="help-block">
+        Please avoid unpleasant or haunting photos of injured animals.
+        If you get an error after uploading for 15-30 sec, try
+        resizing your photo to ~800x800 pixels first.
+      </p>
+    </div>
+  </div>

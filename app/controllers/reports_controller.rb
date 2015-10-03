@@ -68,6 +68,23 @@ class ReportsController < ApplicationController
     end
   end
 
+  def remove_reunited
+    @report = Report.find params[:id]
+    attrs = {
+      reunited: nil,
+      reunited_at: nil,
+      reuniter_is_reporter: nil,
+      reuniter_name: nil,
+      reuniter_email: nil,
+      reuniter_comment: nil,
+    }
+    if @report.update_attributes(attrs)
+      redirect_to @report, notice: 'Report is no longer reunited.'
+    else
+      render 'reports/edit'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report

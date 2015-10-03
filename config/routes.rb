@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   get 'actions/reunite'
 
-  resources :reports
+  resources :reports do
+    member do
+      post "remove_reunited"
+    end
+  end
   root to: "pages#index"
   get "/about", to: "pages#about"
   get "/flyer", to: "pages#flyer"
