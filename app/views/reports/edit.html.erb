@@ -14,6 +14,47 @@
     </div>
   </div>
 
+  <% if @report.reunited? %>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-8">
+        <div class="checkbox">
+          <%= f.label :reunion_confirmed do %>
+            <%= f.check_box :reunion_confirmed %>
+            The reunion has been confirmed by a trusted party by
+            contacting the original poster or owner.
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :reunion_confirmed_by, class: "col-sm-2 control-label" %>
+      <div class="col-sm-8">
+        <%= f.text_field :reunion_confirmed_by, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 field-label">
+        <%= f.label :reunion_confirmed_at, class: "col-sm-2 control-label" %>
+      </div>
+      <div class="col-sm-8">
+        <p class="form-control-static">
+          <%= @report.reunion_confirmed_at.
+                strftime("%A, %B %-d, %Y at %l:%M %P") %>
+        </p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :reunion_confirmation_notes,
+        class: "col-sm-2 control-label" %>
+      <div class="col-sm-8">
+        <%= f.text_area :reunion_confirmation_notes, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-8">
       <%= f.submit class: "btn btn-primary" %>

@@ -48,7 +48,13 @@ class ReportsController < ApplicationController
   # PATCH/PUT /reports/1.json
   def update
     respond_to do |format|
-      if @report.update(report_params)
+      attrs = admin_report_params
+
+      if !@report.reunion_confirmed && attrs[:reunion_confirmed]
+        @report.reunion_confirmed_at = Time.now
+      end
+
+      if @report.update(attrs)
         format.html { redirect_to @report, notice: 'Report was successfully updated.' }
         format.json { render :show, status: :ok, location: @report }
       else
@@ -96,6 +102,15 @@ class ReportsController < ApplicationController
       params.require(:report).permit(:summary, :description, :report_type, :reporter_name, :reporter_contact_info, :photo, :animal_type_id)
     end
 
+    def admin_report_params
+      admin_params = params.require(:report).permit(
+        :reunion_confirmed,
+        :reunion_confirmed_by,
+        :reunion_confirmation_notes,
+      )
+      report_params.merge(admin_params)
+    end
+
     def apply_filters(query)
       reports = Report.arel_table
       # Warning: O(n*m) conditions: n=words, m=fields
@@ -116,6 +131,11 @@ class ReportsController < ApplicationController
       if params[:reunited].present?
         matching_values = params[:reunited] == "true" ? true : [false, nil]
         query = query.where(reunited: matching_values)
+      end
+      if params[:reunion_confirmed].present?
+        matching_values =
+          params[:reunion_confirmed] == "true" ?  true : [false, nil]
+        query = query.where(reunion_confirmed: matching_values)
       end
       if params[:animal_type_id].present?
         animal_type_id = params[:animal_type_id].to_s

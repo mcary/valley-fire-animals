@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923164148) do
+ActiveRecord::Schema.define(version: 20151003165901) do
 
   create_table "animal_types", force: :cascade do |t|
     t.string   "name"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(version: 20150923164148) do
     t.string   "reuniter_email"
     t.datetime "reunited_at"
     t.text     "reuniter_comment"
+    t.boolean  "reunion_confirmed"
+    t.string   "reunion_confirmed_by"
+    t.datetime "reunion_confirmed_at"
+    t.text     "reunion_confirmation_notes"
   end
 
   add_index "reports", ["animal_type_id"], name: "index_reports_on_animal_type_id"
