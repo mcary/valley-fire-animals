@@ -61,6 +61,20 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :location, "Originating location",
+      class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.collection_select(:location_id, Location.all, :id, :name,
+                              { include_blank: "unknown" },
+                              class: "form-control") %>
+      <p class="help-block">
+        Please select the location that the animal was originally found
+        (if found) or where it was lost from (if lost).
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :reporter_name, class: "col-sm-2 control-label" %>
     <div class="col-sm-8">
       <%= f.text_field :reporter_name, class: "form-control" %>

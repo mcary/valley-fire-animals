@@ -11,12 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151004210034) do
+ActiveRecord::Schema.define(version: 20151005125600) do
 
   create_table "animal_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "reports", force: :cascade do |t|
@@ -43,8 +47,10 @@ ActiveRecord::Schema.define(version: 20151004210034) do
     t.datetime "reunion_confirmed_at"
     t.text     "reunion_confirmation_notes"
     t.string   "reporter_email"
+    t.integer  "location_id"
   end
 
   add_index "reports", ["animal_type_id"], name: "index_reports_on_animal_type_id"
+  add_index "reports", ["location_id"], name: "index_reports_on_location_id"
 
 end

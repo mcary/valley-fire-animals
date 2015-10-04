@@ -18,3 +18,31 @@
 ].each do |animal_type|
   AnimalType.find_or_create_by!(name: animal_type)
 end
+
+[
+  "Angels Camp",
+  "Avery",
+  "Clearlake",
+  "Clearlake Oaks",
+  "Cobb",
+  "Finley",
+  "Glenhaven",
+  "Harbin Springs",
+  "Hidden Valley Lake",
+  "Jackson",
+  "Kelseyville",
+  "Lakeport (city not county)",
+  "Loch Lomond",
+  "Lower Lake",
+  "Lucerne",
+  "Middletown",
+  "Nice",
+  "Park",
+  "San Andreas",
+  "Upper Lake",
+  "Whispering Pines",
+  "Witter Springs",
+  "Other (please specify in description)",
+].each do |location|
+  Location.find_or_create_by!(name: location)
+end
