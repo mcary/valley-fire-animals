@@ -21,7 +21,8 @@ class Report < ActiveRecord::Base
 
   validates :summary, length: { maximum: 40 }
 
-  validates :reuniter_name, :reuniter_email,
-    presence: true, if: proc {|r| r.reunited? }
-
+  validates :reuniter_name, :reuniter_email, presence: true,
+    unless: proc {|r|
+      (r.changed & %w{reunited reuniter_email reuniter_name}).empty?
+    }
 end
