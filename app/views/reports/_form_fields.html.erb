@@ -87,6 +87,19 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :reporter_email, class: "col-sm-2 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :reporter_email, class: "form-control" %>
+      <p class="help-block">
+        Please include an email so that we may easily contact you with
+        follow-up correspondence regarding your report.  This will be
+        kept <strong>private</strong> and will not be displayed
+        publicly.
+      </p>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= f.label :photo, class: "col-sm-2 control-label" %>
     <div class="col-sm-8">
       <%= f.file_field :photo %>

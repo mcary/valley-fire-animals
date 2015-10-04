@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003165901) do
+ActiveRecord::Schema.define(version: 20151004210034) do
 
   create_table "animal_types", force: :cascade do |t|
     t.string   "name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151003165901) do
     t.string   "reunion_confirmed_by"
     t.datetime "reunion_confirmed_at"
     t.text     "reunion_confirmation_notes"
+    t.string   "reporter_email"
   end
 
   add_index "reports", ["animal_type_id"], name: "index_reports_on_animal_type_id"
