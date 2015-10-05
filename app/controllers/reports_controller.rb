@@ -102,6 +102,7 @@ class ReportsController < ApplicationController
       params.require(:report).permit(
         :summary,
         :description,
+        :location_id,
         :report_type,
         :reporter_name,
         :reporter_contact_info,
@@ -150,6 +151,11 @@ class ReportsController < ApplicationController
         animal_type_id = params[:animal_type_id].to_s
         animal_type_id = nil if animal_type_id == "none"
         query = query.where(animal_type_id: animal_type_id)
+      end
+      if params[:location_id].present?
+        location_id = params[:location_id].to_s
+        location_id = nil if location_id == "none"
+        query = query.where(location_id: location_id)
       end
       query
     end

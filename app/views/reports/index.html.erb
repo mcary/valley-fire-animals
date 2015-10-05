@@ -10,12 +10,11 @@
   to update or remove a report.
 </p>
 
-<div style="margin-bottom: 0.5em">
-  <%= link_to 'New Report', new_report_path,
-    class: "btn btn-primary", style: "margin-top: 0.5em" %>
+<h2 style="font-size: 150%">Search</h2>
 
+<div class="report-search" style="margin-bottom: 2em">
   <%= form_tag({}, method: :get,
-               class: "form-inline pull-right"
+               class: "form-inline"
                ) do %>
     <div style="margin-top: 0.5em">
       <div class="form-group">
@@ -32,15 +31,26 @@
         <%= label_tag :animal_type_id %>
         <%
           choices = AnimalType.all.map {|a| [a.name, a.id] }
-          choices.unshift ["none", "none"]
+          choices.unshift ["none specified", "none"]
         %>
         <%= select_tag :animal_type_id,
               options_for_select(choices, params[:animal_type_id]),
               include_blank: "any",
               class: "form-control" %>
       </div>
-    </div>
-    <div style="margin-top: 0.5em">
+      <br class="hidden-xs hidden-md hidden-lg">
+      <div class="form-group">
+        <%= label_tag :location_id %>
+        <%
+          choices = Location.all.map {|a| [a.name, a.id] }
+          choices.unshift ["none specified", "none"]
+        %>
+        <%= select_tag :location_id,
+              options_for_select(choices, params[:location_id]),
+              include_blank: "any",
+              class: "form-control" %>
+      </div>
+      <br class="hidden-xs">
       <div class="form-group">
         <%= label_tag :reunited %>
         <%
@@ -58,15 +68,21 @@
         <%= label_tag :words %>
         <%= text_field_tag :words, params[:words], class: "form-control" %>
       </div>
-      <%= submit_tag "Search", class: "btn btn-default" %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
   </div>
   <div class="clearfix"></div>
 </div>
 
-<p class="pull-right" style="clear: right; margin-top: 1em">
-  <%= page_entries_info @reports %>
-</p>
+<div style="margin-bottom: 0.5em; margin-top: 0.5em">
+  <%= link_to 'New Report', new_report_path,
+    class: "btn btn-primary" %>
+
+  <p class="pull-right">
+    <%= page_entries_info @reports %>
+  </p>
+</div>
+
 
 <table class="table table-striped">
   <thead>

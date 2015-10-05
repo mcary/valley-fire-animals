@@ -28,3 +28,9 @@
     margin-top: 0px;
   }
 }
+
+.report-search {
+  @media (min-width: $screen-sm-min) {
+    line-height: 38px;
+  }
+}
