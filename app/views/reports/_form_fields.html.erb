@@ -31,6 +31,10 @@
     <%= f.label :summary, class: "col-sm-2 control-label" %>
     <div class="col-sm-8">
       <%= f.text_field :summary, class: "form-control" %>
+      <p class="help-block">
+        Please include kennel/location, animal name, and Lake County
+        ID, if available.
+      </p>
     </div>
   </div>
 
@@ -51,11 +55,28 @@
   <div class="form-group">
     <%= f.label :description, class: "col-sm-2 control-label" %>
     <div class="col-sm-8">
-      <%= f.text_area :description, class: "form-control" %>
+      <%= f.text_area :description, class: "form-control", rows: 5 %>
       <p class="help-block">
-        It's helpful to include details like the town the animal was
-        lost or found in, the animal's breed, color, distinctive
-        markings, gender, and name, as well as collar color and type.
+        Please include details such as:
+      </p>
+      <ul class="help-block">
+        <li>the town the animal was lost or found in
+        <li>the animal's breed
+        <li>coat color
+        <li>eye color
+        <li>distinctive markings
+        <li>gender
+        <li>name
+        <li>neuter status
+        <li>length of tail
+        <li>date found/lost (otherwise we only track date reported here)
+        <li>collar color and type
+      </ul>
+      <p class="help-block">
+        When re-posting from Facebook, please include a link to the
+        original post, not just the page it was shared on.  (Eventually
+        it will get pushed off the bottom of the page it was shared
+        on.)
       </p>
     </div>
   </div>
@@ -95,7 +116,9 @@
         This will be displayed <strong>publicly</strong> so
         that others may respond to your report.  Suggested forms of
         contact: email, twitter, or phone.  Your residential address
-        is not recommended.
+        is not recommended.  If re-posting or posting on behalf of
+        someone else, please include a contact for the original
+        reporter.
       </p>
     </div>
   </div>

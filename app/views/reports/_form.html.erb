@@ -3,6 +3,10 @@
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-8">
+      <p class="help-block">
+        Please Review Carefully:  You will be not able to edit after creating
+        the report.
+      </p>
       <%= f.submit class: "btn btn-primary" %>
       <%= link_to 'View all reports', reports_path, class: "btn btn-link" %>
       <% if @report.persisted? %>
