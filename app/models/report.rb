@@ -26,6 +26,7 @@ class Report < ActiveRecord::Base
 
   validates :reuniter_name, :reuniter_email, presence: true,
     unless: proc {|r|
-      (r.changed & %w{reunited reuniter_email reuniter_name}).empty?
+      (r.changed & %w{reunited reuniter_email reuniter_name}).empty? ||
+        !r.reunited
     }
 end
