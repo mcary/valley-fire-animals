@@ -41,7 +41,7 @@ describe "Reports" do
     it 'can be marked reunited' do
       create_report
       visit "/reports/1"
-      click_button("Yes, this animal and its owner are reunited")
+      click_button("Let us know!")
       fill_in "Your name", with: "Jane Doe"
       fill_in "Your email", with: "jane@doe.com"
       click_button("Update Report")
