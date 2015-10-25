@@ -10,8 +10,15 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.reorder("created_at desc").includes(:animal_type)
-    @reports = apply_pagination apply_filters @reports
+    @reports = Report.reorder("reports.created_at desc").includes(:animal_type)
+    @reports = apply_filters @reports
+    respond_to do |format|
+      format.html { @reports = apply_pagination @reports }
+      format.csv do
+        render text: csv_content(@reports),
+          content_type: "text/csv; charset=utf-8; header=present"
+      end
+    end
   end
 
   # GET /reports/1
@@ -119,6 +126,54 @@ class ReportsController < ApplicationController
         :reunion_confirmation_notes,
       )
       report_params.merge(admin_params)
+    end
+
+    require 'csv'
+    def csv_content(reports)
+      columns1 = %w{
+        id
+        report_type
+      }
+      columns2 = %w{
+        summary
+        description
+        reporter_name
+        reporter_contact_info
+        created_at
+        updated_at
+        photo_file_name
+        photo_content_type
+        photo_file_size
+        photo_updated_at
+      }
+      columns3 = %w{
+        reunited
+        reuniter_is_reporter
+        reuniter_name
+        reunited_at
+        reuniter_comment
+      }
+      reports = reports.
+        includes(:animal_type, :location)
+
+      CSV.generate do |csv|
+        csv << (
+          columns1.map(&:humanize) +
+          ["Animal type name", "Location name"] +
+          columns2.map(&:humanize) +
+          ["Photo URL"] +
+          columns3.map(&:humanize)
+        )
+        reports.each do |report|
+          csv << (
+            columns1.map {|column| report.send(column) } +
+            [report.animal_type_name, report.location_name] +
+            columns2.map {|column| report.send(column) } +
+            [(report.photo.url(:medium) if report.photo.present?)] +
+            columns3.map {|column| report.send(column) }
+          )
+        end
+      end
     end
 
     def apply_filters(query)
