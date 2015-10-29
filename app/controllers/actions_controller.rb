@@ -1,5 +1,6 @@
 class ActionsController < ApplicationController
   def reunite
+    raise "Disabled"
     @report = Report.find params[:id]
     if @report.update(reunite_params)
       redirect_to @report, notice: 'Report was successfully updated.'

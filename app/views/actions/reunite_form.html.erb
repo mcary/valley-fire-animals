@@ -2,6 +2,10 @@
   <h1>Report #<%= @report.id %>: Reunite</h1>
 </div>
 
+<div class="alert alert-warning" role="alert">
+  Reuniting is disabled due to abuse.  Please email me instead.
+</div>
+
 <%= form_for(@report,
              url: { action: :reunite },
              html: { class: "form-horizontal"}) do |f| %>
